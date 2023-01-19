@@ -18,6 +18,14 @@ describe('SoulboundToken', function () {
 
       expect(await soulboundToken.owner()).to.equal(owner.address)
     })
+
+    it('Should implement right interface', async function () {
+      const { soulboundToken, owner } = await loadFixture(deploySoulboundTokenFixture)
+
+      expect(await soulboundToken.supportsInterface('0x80ac58cd')).to.true
+      expect(await soulboundToken.supportsInterface('0x5b5e139f')).to.true
+      expect(await soulboundToken.supportsInterface('0x780e9d63')).to.true
+    })
   })
 
   describe('Mint', function () {
